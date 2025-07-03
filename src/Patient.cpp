@@ -1,30 +1,10 @@
 #include "../include/patient.h"
-#include <iostream>
-using namespace std;
 
-Patient::Patient(const string& name, int age, const string& id)
-    : User(id, name), age(age), diagnosis("Not diagnosed yet") {}
+Patient::Patient(const std::string& id, const std::string& name, int age)
+    : id(id), name(name), age(age) {}
 
-void Patient::setDiagnosis(const string& diag) {
-    diagnosis = diag;
-}
-
-string Patient::getDiagnosis() const {
-    return diagnosis;
-}
-
-int Patient::getAge() const {
-    return age;
-}
-
-void Patient::displayInfo() const {
-    cout << "Patient Name   : " << name << endl;
-    cout << "Patient ID     : " << user_id << endl;
-    cout << "Age            : " << age << endl;
-    cout << "Diagnosis      : " << diagnosis << endl;
-}
-
-string Patient::getRole() const {
-    return "Patient";
-}
-
+std::string Patient::get_id() const { return id; }
+std::string Patient::get_name() const { return name; }
+int Patient::get_age() const { return age; }
+void Patient::set_name(const std::string& new_name) { name = new_name; }
+void Patient::set_age(int new_age) { age = new_age; }

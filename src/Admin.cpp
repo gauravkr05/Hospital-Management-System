@@ -1,6 +1,5 @@
 #include "../include/Admin.h"
-#include "../include/hospital.h"
-#include "../include/helper_functions.h"
+#include <iostream>
 using namespace std;
 
 Admin::Admin(const string& name, const string& pwd, const string& id)
@@ -20,9 +19,6 @@ void Admin::add_patient() {
     string name, ageStr;
     cout << "Enter patient name: "; getline(cin, name);
     cout << "Enter age: "; getline(cin, ageStr);
-    if (!HelperFunctions::isValidNumber(ageStr)) {
-        cout << "Invalid age format!\n"; return;
-    }
     int age = stoi(ageStr);
     Hospital::getInstance().add_patient(name, age);
     cout << "Patient added successfully.\n";
@@ -57,59 +53,43 @@ void Admin::remove_doctor() {
 }
 
 void Admin::book_appointment() {
-    string pid, date, time;
-    cout << "Enter patient ID: "; getline(cin, pid);
-    cout << "Enter appointment date (DD/MM/YYYY): "; getline(cin, date);
-    cout << "Enter time (e.g., 10:30AM): "; getline(cin, time);
-    Hospital::getInstance().book_appointment(pid, date, time);
+    cout << "[Stub] Booking appointment...\n";
 }
 
 void Admin::assign_doctor() {
-    string app_id, did;
-    cout << "Enter appointment ID: "; getline(cin, app_id);
-    cout << "Enter doctor ID to assign: "; getline(cin, did);
-    Hospital::getInstance().assign_doctor(app_id, did);
+    cout << "[Stub] Assigning doctor...\n";
 }
 
 void Admin::view_doctor_schedule() {
-    string did;
-    cout << "Enter doctor ID: "; getline(cin, did);
-    Hospital::getInstance().view_doctor_schedule(did);
+    cout << "[Stub] Viewing doctor schedule...\n";
 }
 
 void Admin::view_treatment_records() {
-    Hospital::getInstance().view_all_treatments();
+    cout << "[Stub] Viewing all treatments...\n";
 }
 
 void Admin::record_billing() {
-    string pid, amountStr;
-    cout << "Enter patient ID: "; getline(cin, pid);
-    cout << "Enter amount: "; getline(cin, amountStr);
-    if (!HelperFunctions::isValidNumber(amountStr)) {
-        cout << "Invalid amount!\n"; return;
-    }
-    double amt = stod(amountStr);
-    Hospital::getInstance().add_billing(pid, amt);
+    cout << "[Stub] Recording billing...\n";
 }
 
 void Admin::update_password() {
     string pwd, cnf;
     cout << "Enter new password: "; getline(cin, pwd);
     cout << "Confirm new password: "; getline(cin, cnf);
-    if (pwd != cnf) {
-        cout << "Passwords do not match!\n";
-    } else {
+    if (pwd == cnf) {
         password = pwd;
-        cout << "Password updated successfully.\n";
+        cout << "Password updated.\n";
+    } else {
+        cout << "Passwords do not match.\n";
     }
 }
 
 void Admin::print_menu() {
-    cout << "\n================= ADMIN DASHBOARD =================\n";
+    cout << "\n==== ADMIN MENU ====" << endl;
     cout << "1. Add Patient\n2. Remove Patient\n3. Add Doctor\n4. Remove Doctor\n";
-    cout << "5. Book Appointment\n6. Assign Doctor\n7. View Doctor Schedule\n";
-    cout << "8. View Treatment Records\n9. Record Billing\n10. Update Password\n11. Logout\n";
-    cout << "Enter your choice: ";
+    cout << "5. Book Appointment\n6. Assign Doctor\n7. View Schedule\n8. View Treatments\n";
+    cout << "9. Record Billing\n10. Update Password\n11. Logout\n";
+    cout << "Enter choice: ";
 }
 
 void Admin::login_page() {
@@ -117,7 +97,6 @@ void Admin::login_page() {
     while (true) {
         print_menu();
         getline(cin, choice);
-
         if (choice == "1") add_patient();
         else if (choice == "2") remove_patient();
         else if (choice == "3") add_doctor();
@@ -128,10 +107,7 @@ void Admin::login_page() {
         else if (choice == "8") view_treatment_records();
         else if (choice == "9") record_billing();
         else if (choice == "10") update_password();
-        else if (choice == "11") {
-            cout << "Logged out successfully.\n"; break;
-        } else {
-            cout << "Invalid choice!\n";
-        }
+        else if (choice == "11") break;
+        else cout << "Invalid choice.\n";
     }
 }

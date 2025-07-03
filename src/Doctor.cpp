@@ -1,32 +1,14 @@
 #include "../include/doctor.h"
-#include <iostream>
-using namespace std;
 
-Doctor::Doctor(const string& name, const string& specialization, const string& id)
-    : User(id, name), specialization(specialization) {}
+Doctor::Doctor(const std::string& id, const std::string& name, const std::string& specialization)
+    : id(id), name(name), specialization(specialization) {}
 
-void Doctor::viewAppointments() const {
-    cout << "\nViewing appointments for Dr. " << name << " (ID: " << user_id << ")\n";
-    cout << "(Simulation) Appointments would be listed here.\n";
-}
+std::string Doctor::get_id() const { return id; }
+std::string Doctor::get_name() const { return name; }
+std::string Doctor::get_specialization() const { return specialization; }
+void Doctor::set_name(const std::string& new_name) { name = new_name; }
+void Doctor::set_specialization(const std::string& new_spec) { specialization = new_spec; }
 
-void Doctor::treatPatient(const string& appointmentId) {
-    cout << "\nTreating patient for Appointment ID: " << appointmentId << endl;
-    cout << "(Simulation) Treatment has been recorded.\n";
-}
 
-string Doctor::getSpecialization() const {
-    return specialization;
-}
-
-void Doctor::displayInfo() const {
-    cout << "Doctor Name       : " << name << endl;
-    cout << "Doctor ID         : " << user_id << endl;
-    cout << "Specialization    : " << specialization << endl;
-}
-
-string Doctor::getRole() const {
-    return "Doctor";
-}
 
 
