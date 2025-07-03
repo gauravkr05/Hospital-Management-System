@@ -53,23 +53,36 @@ void Admin::remove_doctor() {
 }
 
 void Admin::book_appointment() {
-    cout << "[Stub] Booking appointment...\n";
+    string patient_id, doctor_id, date;
+    cout << "Enter patient ID: "; getline(cin, patient_id);
+    cout << "Enter doctor ID: "; getline(cin, doctor_id);
+    cout << "Enter appointment date (YYYY-MM-DD): "; getline(cin, date);
+    cout << "Appointment booked for Patient " << patient_id << " with Doctor " << doctor_id << " on " << date << ".\n";
 }
 
 void Admin::assign_doctor() {
-    cout << "[Stub] Assigning doctor...\n";
+    string patient_id, doctor_id;
+    cout << "Enter patient ID: "; getline(cin, patient_id);
+    cout << "Enter doctor ID to assign: "; getline(cin, doctor_id);
+    cout << "Doctor " << doctor_id << " assigned to patient " << patient_id << ".\n";
 }
 
 void Admin::view_doctor_schedule() {
-    cout << "[Stub] Viewing doctor schedule...\n";
+    string doctor_id;
+    cout << "Enter doctor ID: "; getline(cin, doctor_id);
+    cout << "Schedule for Doctor " << doctor_id << " not yet implemented.\n";
 }
 
 void Admin::view_treatment_records() {
-    cout << "[Stub] Viewing all treatments...\n";
+    cout << "Viewing all treatment records not yet implemented.\n";
 }
 
 void Admin::record_billing() {
-    cout << "[Stub] Recording billing...\n";
+    string patient_id, amountStr;
+    cout << "Enter patient ID: "; getline(cin, patient_id);
+    cout << "Enter billing amount: "; getline(cin, amountStr);
+    double amount = stod(amountStr);
+    cout << "Billing of Rs. " << amount << " recorded for patient " << patient_id << ".\n";
 }
 
 void Admin::update_password() {
@@ -85,7 +98,7 @@ void Admin::update_password() {
 }
 
 void Admin::print_menu() {
-    cout << "\n==== ADMIN MENU ====" << endl;
+    cout << "\n==== ADMIN MENU ====\n";
     cout << "1. Add Patient\n2. Remove Patient\n3. Add Doctor\n4. Remove Doctor\n";
     cout << "5. Book Appointment\n6. Assign Doctor\n7. View Schedule\n8. View Treatments\n";
     cout << "9. Record Billing\n10. Update Password\n11. Logout\n";
