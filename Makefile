@@ -1,37 +1,38 @@
+# ===== Makefile =====
+
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++17 -Iinclude -Wall -Wextra
+CXXFLAGS = -std=c++11 -Iinclude
 
-# Project name
-TARGET = hospital_app
-
-# Source and object files
+# Directories
 SRCDIR = src
+INCDIR = include
 OBJDIR = obj
+BINDIR = bin
 
-SOURCES = $(wildcard $(SRCDIR)/*.cpp) main.cpp
-OBJECTS = $(patsubst %.cpp,$(OBJDIR)/%.o,$(notdir $(SOURCES)))
+# Output binary
+TARGET = $(BINDIR)/hospital_mgmt
+
+# Source files
+SRCS = $(wildcard $(SRCDIR)/*.cpp)
+OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
+
+# Create necessary directories if not present
+$(shell mkdir -p $(OBJDIR) $(BINDIR))
 
 # Default target
 all: $(TARGET)
 
-# Linking
-$(TARGET): $(OBJECTS)
+$(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Compiling
+# Compile each .cpp file into .o
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
-	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(OBJDIR)/main.o: main.cpp
-	@mkdir -p $(OBJDIR)
-	$(CXX) $(CXXFLAGS) -c main.cpp -o $@
-
-# Clean up
+# Clean build files
 clean:
-	rm -rf $(OBJDIR) *.o $(TARGET)
+	rm -rf $(OBJDIR)/*.o $(TARGET)
 
-# Run the app
-run: all
-	./$(TARGET)
+.PHONY: all clean
+

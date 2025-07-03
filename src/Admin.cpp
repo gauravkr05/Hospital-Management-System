@@ -57,20 +57,21 @@ void Admin::book_appointment() {
     cout << "Enter patient ID: "; getline(cin, patient_id);
     cout << "Enter doctor ID: "; getline(cin, doctor_id);
     cout << "Enter appointment date (YYYY-MM-DD): "; getline(cin, date);
-    cout << "Appointment booked for Patient " << patient_id << " with Doctor " << doctor_id << " on " << date << ".\n";
+    Hospital::getInstance().add_appointment(patient_id, doctor_id, date);
 }
 
 void Admin::assign_doctor() {
     string patient_id, doctor_id;
     cout << "Enter patient ID: "; getline(cin, patient_id);
     cout << "Enter doctor ID to assign: "; getline(cin, doctor_id);
-    cout << "Doctor " << doctor_id << " assigned to patient " << patient_id << ".\n";
+    Hospital::getInstance().assign_doctor_to_patient(patient_id, doctor_id);
 }
 
 void Admin::view_doctor_schedule() {
     string doctor_id;
-    cout << "Enter doctor ID: "; getline(cin, doctor_id);
-    cout << "Schedule for Doctor " << doctor_id << " not yet implemented.\n";
+    cout << "Enter doctor ID: ";
+    getline(cin, doctor_id);
+    Hospital::getInstance().view_doctor_schedule(doctor_id);
 }
 
 void Admin::view_treatment_records() {

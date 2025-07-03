@@ -1,11 +1,12 @@
 #include "../include/doctor.h"
+using namespace std;
 
-Doctor::Doctor(const std::string& id, const std::string& name, const std::string& specialization)
+Doctor::Doctor(const string& id, const string& name, const string& specialization)
     : id(id), name(name), specialization(specialization) {}
 
-std::string Doctor::get_id() const { return id; }
-std::string Doctor::get_name() const { return name; }
-std::string Doctor::get_specialization() const { return specialization; }
+string Doctor::get_id() const { return id; }
+string Doctor::get_name() const { return name; }
+string Doctor::get_specialization() const { return specialization; }
 void Doctor::set_name(const std::string& new_name) { name = new_name; }
 void Doctor::set_specialization(const std::string& new_spec) { specialization = new_spec; }
 

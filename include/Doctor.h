@@ -1,25 +1,23 @@
-// DOCTOR.H
 #ifndef DOCTOR_H
 #define DOCTOR_H
 
 #include <string>
-#include <vector>
-#include "user.h"
+using namespace std;
 
-class Doctor : public User {
+class Doctor {
 private:
-    std::string specialization;
+    string id;
+    string name;
+    string specialization;
 
 public:
-    Doctor(const std::string& name, const std::string& specialization, const std::string& id = "");
-
-    void viewAppointments() const;
-    void treatPatient(const std::string& appointmentId);
-
-    std::string getSpecialization() const;
-
-    void displayInfo() const override;
-    std::string getRole() const override;
+    Doctor() = default;
+    Doctor(const string& id, const string& name, const string& specialization);
+    string get_id() const;
+    string get_name() const;
+    string get_specialization() const;
+    void set_name(const std::string& name);
+    void set_specialization(const std::string& specialization);
 };
 
-#endif
+#endif // DOCTOR_H
